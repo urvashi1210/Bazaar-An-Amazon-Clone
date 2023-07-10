@@ -3,10 +3,9 @@ const app=express();
 const dotenv=require('dotenv').config();
 const dbConnect=require("./config/dbConnect.js");
 const authRouter=require('./routes/authRoute')
-const PORT=process.env.PORT||4000;
+const PORT=process.env.PORT||5000;
 
 dbConnect();
-
 
 app.use('/api/user',authRouter);
 

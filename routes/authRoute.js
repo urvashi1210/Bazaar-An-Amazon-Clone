@@ -1,6 +1,7 @@
 const express=require('express');
-const {createUser}=require("./controller/userCtrl");
 const router=express.Router();
+
+const {createUser}=require("../controller/userCtrl");
 
 router.post("/register",createUser);
 
