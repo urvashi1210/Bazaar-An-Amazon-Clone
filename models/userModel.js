@@ -5,13 +5,11 @@ var userSchema = new mongoose.Schema({
     firstname:{
         type:String,
         required:true,
-        unique:true,
         index:true,
     },
     lastname:{
         type:String,
         required:true,
-        unique:true,
         index:true,
     },
     email:{
