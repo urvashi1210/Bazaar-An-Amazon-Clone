@@ -150,5 +150,25 @@ exports.handleRefreshToken=asyncHandler(async(req,res,next)=>{
 
 exports.logout=asyncHandler(async(req,res,next)=>{
     const cookie=req.cookies;
-    
+    if(!cookie?.refreshToken)throw new Error("No Refresh Token in Cookies");
+    const refreshToken=cookie.refreshToken;
+    const user=await User.findOne({refreshToken});
+    if(!user){
+        res.clearCookie('refreshToken',{    
+            httpOnly:true,
+            secure:true,
+        });
+        res.sendStatus(204);//forbidden
+    }
+    await User.findOneAndUpdate({refreshToken},{
+        refreshToken:"",
+    });
+    res.clearCookie("refreshToken",{
+        httpOnly:true,
+        secure:true,
+    })
+    res.sendStatus(204);//forbidden
+
+    //204 is designed to be used with res.sendStatus instead of res.status as 204 does not generate a response/message body
+    //204 - no content
 })    
