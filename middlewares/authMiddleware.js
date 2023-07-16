@@ -32,3 +32,6 @@ exports.isAdmin=asyncHandler(async(req,res,next)=>{
         next();
     }
 });
+
+
+//authMiddleware->isAdmin : first look for user exists(he is a legit user, has jwt) -> then check if he is admin

@@ -18,6 +18,7 @@ app.use(cookieParser());
 
 app.use('/api/user',authRouter);
 app.use('/api/product',productRouter);
+app.use("/api")
 app.use(notFound);
 app.use(errorHandler);
 
