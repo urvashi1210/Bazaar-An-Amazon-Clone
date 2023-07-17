@@ -6,7 +6,7 @@ var blogSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    blog:{
+    description:{
         type:String,
         required:true,
     },
