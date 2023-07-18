@@ -5,6 +5,7 @@ const dbConnect=require("./config/dbConnect.js");
 const authRouter=require('./routes/authRoute');
 const productRouter=require('./routes/productRoute');
 const blogRouter=require('./routes/blogRoute');
+const categoryRouter=require('./routes/prodcategoryRoute.js');
 const bodyParser = require('body-parser');
 const { notFound,errorHandler } = require('./middlewares/errorHandler.js');
 const PORT=process.env.PORT||5000;
@@ -20,6 +21,7 @@ app.use(cookieParser());
 app.use('/api/user',authRouter);
 app.use('/api/product',productRouter);
 app.use("/api/blog",blogRouter);
+app.use("/api/category",categoryRouter);
 app.use(notFound);
 app.use(errorHandler);
 
