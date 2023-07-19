@@ -105,7 +105,7 @@ var userSchema = new Schema({
     type: Types.ObjectId, // Update the type to Types.ObjectId
     ref: "Address"
   }],
-  wishList: [{
+  wishlist: [{
     type: Types.ObjectId, // Update the type to Types.ObjectId
     ref: "Product"
   }]
