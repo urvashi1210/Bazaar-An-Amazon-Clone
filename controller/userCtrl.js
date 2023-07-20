@@ -1,7 +1,7 @@
-const { generateToken } = require('../config/jwtToken');
+const generateToken = require('../config/jwtToken');
 const User=require('../models/userModel');
 const asyncHandler=require('express-async-handler');
-const {validateMongooseId} = require('../utils/validateMongooseId');
+const validateMongooseId=require('../utils/validateMongooseId');
 const {generateRefreshToken}=require("../config/refreshToken");
 const jwt=require("jsonwebtoken")
 const crypto=require("crypto");
@@ -79,7 +79,7 @@ exports.getAllUsers=asyncHandler(async(req,res)=>{
 
 exports.getaUser=asyncHandler(async(req,res)=>{
     const {id}=req.params;
-    // validateMongooseId(id);
+    validateMongooseId(id);
     try{
         const getaUser=await User.findById(id);
         res.json({
@@ -92,7 +92,7 @@ exports.getaUser=asyncHandler(async(req,res)=>{
 
 exports.deleteaUser=asyncHandler(async(req,res)=>{
     const {id}=req.params;
-    // validateMongooseId(id);
+    validateMongooseId(id);
     try{
         const deleteaUser=await User.findByIdAndDelete(id);
         res.json({
@@ -105,13 +105,13 @@ exports.deleteaUser=asyncHandler(async(req,res)=>{
 
 exports.updatedUser=asyncHandler(async(req,res)=>{
     const {_id}=req.user;
-    // validateMongooseId(_id);
+    validateMongooseId(_id);
     try{
         const updatedUser=await User.findByIdAndUpdate(_id,{
-            firstname:req.body.firstname,
-            lastname:req.body.lastname,
-            email:req.body.email,
-            mobile:req.body.mobile
+            firstname:req?.body?.firstname,
+            lastname:req?.body?.lastname,
+            email:req?.body?.email,
+            mobile:req?.body?.mobile
         },{
             new:true,
         });
@@ -123,7 +123,7 @@ exports.updatedUser=asyncHandler(async(req,res)=>{
 
 exports.blockUser=asyncHandler(async(req,res)=>{
 const {id}=req.params;
-// validateMongooseId(id);
+validateMongooseId(id);
 try{
     const block=await User.findByIdAndUpdate(id,{
         isBlocked:true,
@@ -141,7 +141,7 @@ res.json({
 
 exports.unblockUser=asyncHandler(async(req,res)=>{
     const {id}=req.params;
-    // validateMongooseId(id);
+    validateMongooseId(id);
     try{
         const unblock=await User.findByIdAndUpdate(id,{
             isBlocked:false,
@@ -203,7 +203,7 @@ exports.logout=asyncHandler(async(req,res,next)=>{
 exports.updatePassword=asyncHandler(async(req,res)=>{
     const {_id}=req.user;
     const {password}=req.body;
-    // validateMongooseId(_id);
+    validateMongooseId(_id);
     const user=await User.findById(_id);
     if(password){
         user.password=password;
@@ -260,13 +260,27 @@ exports.forgotPasswordToken = asyncHandler(async (req, res) => {
 
 exports.getWishlist=asyncHandler(async(req,res)=>{
     const {_id}=req.user;
-    console.log(_id);
     try{
         const findUser=await User.findById(_id).populate("wishlist");
         res.json(findUser);
 
         // When you query the database to retrieve documents from the book collection, you can use the populate() function to replace the author field (which stores the ObjectId of an author document) with the actual author document. This way, you get all the details of the referenced author.
 
+    }catch(error){
+        throw new Error(error);
+    }
+})
+
+exports.saveAddress=asyncHandler(async(req,res,next)=>{
+    const {_id}=req.user;
+    validateMongooseId(_id);
+    try{
+        const updatedUser=await User.findByIdAndUpdate(_id,{
+            address:req?.body?.address,
+        },{
+            new:true,
+        });
+        res.json(updatedUser);
     }catch(error){
         throw new Error(error);
     }

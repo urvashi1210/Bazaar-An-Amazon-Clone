@@ -102,8 +102,7 @@ var userSchema = new Schema({
     default: [],
   },
   address: [{
-    type: Types.ObjectId, // Update the type to Types.ObjectId
-    ref: "Address"
+    type: String, // Update the type to Types.ObjectId
   }],
   wishlist: [{
     type: Types.ObjectId, // Update the type to Types.ObjectId
