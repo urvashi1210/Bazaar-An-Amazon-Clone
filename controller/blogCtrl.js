@@ -1,7 +1,7 @@
 const Blog = require('../models/blogModel');
 const User  = require('../models/userModel');
 const asyncHandler = require('express-async-handler');
-const {validateMoongooseId} = require('../utils/validateMongooseId');
+const {validateMongooseId} = require('../utils/validateMongooseId');
 const { cloudinaryUploadImg } = require('../utils/cloudinary');
 const fs= require('fs');
 
@@ -17,7 +17,7 @@ exports.createBlog = asyncHandler( async(req,res)=>{
 
 exports.getBlog = asyncHandler(async (req, res) => {
    const { id } = req.params;
-   validateMoongooseId(id);
+   validateMongooseId(id);
    try {
       let getBlog = await Blog.findByIdAndUpdate(
        id,
@@ -50,7 +50,7 @@ exports.getAllBlogs = asyncHandler(async(req,res)=>{
 
 exports.updateBlog = asyncHandler(async(req,res)=>{
    const {id}= req.params;
-   validateMoongooseId(id);
+   validateMongooseId(id);
    try{
       const updateBlog = await Blog.findByIdAndUpdate(id,req.body,{new:true});
       res.json(updateBlog);
@@ -62,7 +62,7 @@ exports.updateBlog = asyncHandler(async(req,res)=>{
 
 exports.deleteBlog = asyncHandler(async(req,res)=>{
    const {id}= req.params;
-   validateMoongooseId(id);
+   validateMongooseId(id);
    try{
       const deleteBlog = await Blog.findByIdAndDelete(id);
       res.json(deleteBlog);
@@ -74,7 +74,7 @@ exports.deleteBlog = asyncHandler(async(req,res)=>{
 
 exports.likeBlog = asyncHandler(async(req,res)=>{
    const {blogId} = req.body;
-   validateMoongooseId(blogId);
+   validateMongooseId(blogId);
    
    //Find the blog which you want to be liked 
    const blog = await Blog.findById(blogId);
@@ -122,7 +122,7 @@ exports.likeBlog = asyncHandler(async(req,res)=>{
 
 exports.disLikeBlog = asyncHandler(async(req,res)=>{
    const {blogId} = req.body;
-   validateMoongooseId(blogId);
+   validateMongooseId(blogId);
    
    //Find the blog which you want to be liked 
    const blog = await Blog.findById(blogId);
@@ -172,7 +172,7 @@ exports.disLikeBlog = asyncHandler(async(req,res)=>{
 
 exports.uploadImages = asyncHandler(async(req,res)=>{
    const {id} = req.params;
-   validateMoongooseId(id);
+   validateMongooseId(id);
  
    try{
      const uploader = (path) =>cloudinaryUploadImg(path, "images");
