@@ -1,6 +1,6 @@
 const Coupon=require("../models/couponModel.js");
 const asyncHandler=require("express-async-handler");
-const validateMongoDbId=require("../utils/validateMongodbId.js");
+const validateMongooseId=require("../utils/validateMongooseId.js");
 
 exports.createCoupon=asyncHandler(async(req,res)=>{
     try{
@@ -23,7 +23,7 @@ exports.getAllCoupons=asyncHandler(async(req,res)=>{
 
 exports.updateCoupon=asyncHandler(async(req,res)=>{
     const {id}=req.params;
-    validateMongoDbId(id);
+    validateMongooseId(id);
     
     try{
         const updatecoupon=await Coupon.findByIdAndUpdate(id,req.body,{
@@ -37,7 +37,7 @@ exports.updateCoupon=asyncHandler(async(req,res)=>{
 
 exports.deleteCoupon=asyncHandler(async(req,res)=>{
     const {id}=req.params;
-    validateMongoDbId(id);
+    validateMongooseId(id);
 
     try{
         const deletecoupon=await Coupon.findByIdAndDelete(id);

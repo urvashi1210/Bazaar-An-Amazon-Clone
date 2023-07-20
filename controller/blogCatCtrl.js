@@ -1,6 +1,6 @@
 const Category=require("../models/blogCatModel.js");
 const asyncHandler=require("express-async-handler");
-const validateMongoDbId=require("../utils/validateMongodbId.js")
+const validateMongooseId=require("../utils/validateMongooseId.js")
 
 exports.createCategory=asyncHandler(async(req,res)=>{
     try{
@@ -14,7 +14,7 @@ exports.createCategory=asyncHandler(async(req,res)=>{
 
 exports.updateCategory=asyncHandler(async(req,res)=>{
     const {id}=req.params;
-    validateMongoDbId(id);
+    validateMongooseId(id);
     try{
         const updatedCategory=await Category.findByIdAndUpdate(id,req.body,{
             new:true,
@@ -28,7 +28,7 @@ exports.updateCategory=asyncHandler(async(req,res)=>{
 
 exports.deleteCategory=asyncHandler(async(req,res)=>{
     const {id}=req.params;
-    validateMongoDbId(id);
+    validateMongooseId(id);
     try{
         const deletedCategory=await Category.findByIdAndDelete(id);
         res.json(deletedCategory);
@@ -40,7 +40,7 @@ exports.deleteCategory=asyncHandler(async(req,res)=>{
 
 exports.getCategory=asyncHandler(async(req,res)=>{
     const {id}=req.params;
-    validateMongoDbId(id);
+    validateMongooseId(id);
     try{
         const getCategory=await Category.findById(id);
         res.json(getCategory);

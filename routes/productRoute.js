@@ -1,16 +1,18 @@
-const express=require("express");
-const router=express.Router();
+const express = require('express');
+const productController  = require('../controller/productCtrl');
+const {isAdmin, authMiddleware} = require('../middlewares/authMiddleware');
+const uploadImage = require('../middlewares/uploadImage');
+const router= express.Router();
 
-const {createProduct,getaProduct, getAllProducts, updateProduct, deleteProduct, addToWishlist, rating}=require("../controller/productCtrl");
+router.post('/',authMiddleware,isAdmin,productController.createProduct);
+router.get('/',productController.getAllProducts);
+router.put('/upload/:id',authMiddleware,isAdmin ,uploadImage.uploadPhoto.array('images',10),uploadImage.productImgResize,productController.uploadImages);
+router.put('/wishlist',authMiddleware,productController.addToWishlist);
+router.put('/rating',authMiddleware,productController.rating);
 
-const {authMiddleware,isAdmin}=require("../middlewares/authMiddleware");
+router.get('/:id',productController.getaProduct);
+router.put('/:id',authMiddleware,isAdmin,productController.updateProduct);
+router.delete('/:id',authMiddleware,isAdmin,productController.deleteProduct);
 
-router.post("/",authMiddleware,isAdmin,createProduct);
-router.get("/",getAllProducts);
-router.get("/:id",getaProduct);
-router.put("/wishlist",authMiddleware,isAdmin,addToWishlist);
-router.put("/rating",authMiddleware,isAdmin,rating);
-router.put("/:id",authMiddleware,isAdmin,updateProduct);
-router.delete("/:id",authMiddleware,isAdmin,deleteProduct);
 
-module.exports=router;
+module.exports = router;

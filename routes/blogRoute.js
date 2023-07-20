@@ -1,18 +1,26 @@
-const express=require("express");
-const router=express.Router();
-
-const { authMiddleware, isAdmin } = require("../middlewares/authMiddleware");
-
-const {createBlog, updateBlog, getBlog,getAllBlogs, deleteBlog, likeBlog, dislikeBlog}=require("../controller/blogCtrl");
-
-router.post("/", authMiddleware, isAdmin, createBlog);
-router.get("/",getAllBlogs);
-router.put("/likes",authMiddleware,likeBlog);
-router.put("/dislikes",authMiddleware,dislikeBlog);
-router.put("/:id", authMiddleware, isAdmin, updateBlog);
-router.get("/:id",getBlog);
-router.delete("/:id",authMiddleware,isAdmin,deleteBlog);
-
-module.exports=router;
+const express = require('express');
+const router = express.Router();
+const blogController = require('../controller/blogCtrl');
+const authMiddleware = require('../middlewares/authMiddleware');
+const uploadImage = require('../middlewares/uploadImage');
 
 
+router.post('/',authMiddleware.authMiddleware,authMiddleware.isAdmin,blogController.createBlog);
+router.get('/',blogController.getAllBlogs);
+router.put(
+  '/upload/:id'
+  ,authMiddleware.authMiddleware
+  ,authMiddleware.isAdmin 
+  ,uploadImage.uploadPhoto.array('images',10)
+  ,uploadImage.blogImgResize
+  ,blogController.uploadImages
+  );
+
+router.put('/likes',authMiddleware.authMiddleware,blogController.likeBlog);
+router.put('/dislikes',authMiddleware.authMiddleware,blogController.disLikeBlog);
+router.get('/:id',blogController.getBlog);
+router.patch('/:id',authMiddleware.authMiddleware,authMiddleware.isAdmin,blogController.updateBlog);
+router.delete('/:id',authMiddleware.authMiddleware,authMiddleware.isAdmin,blogController.deleteBlog);
+
+
+module.exports = router;

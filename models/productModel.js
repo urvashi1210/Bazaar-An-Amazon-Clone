@@ -1,7 +1,5 @@
-//!mdbgum
-
 const mongoose = require('mongoose'); // Erase if already required
-
+const User = require('./userModel');
 // Declare the Schema of the Mongo model
 var productSchema = new mongoose.Schema({
     title:{
@@ -24,41 +22,49 @@ var productSchema = new mongoose.Schema({
         required:true,
     },
     category:{
-        type:String,
-        required:true,
+      // type:mongoose.Schema.Types.ObjectId,
+      // ref:"Category",
+      type:String,
+      required:true
     },
     brand:{
-        type:String,
-        required:true,
-    },
+      type:String,
+      required:true  
+      },
     quantity:{
-        type:Number,
-        required:true,
+      type:Number,
+      required:true,
     },
     sold:{
-        type:Number,
-        default:0,
-        select:false,
+      type:Number,
+      default:0,
+      select:false
     },
-    images:{
-        type:Array
-    },
+    images: [] ,
+
     color:{
-        type:String,
-        required:true,
+      type:String,
+      required:true
     },
     ratings:[{
-        star:Number,
-        comment:String,
-        postedby:{type:mongoose.Schema.Types.ObjectId,ref:"User"},
+      star:Number,
+      comment:String,
+      postedby:{ 
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'User',
     },
-],
-    totalrating:{
-        type:String,
-        default:0
-    }
+    }],
+    totalRatings :{
+      type: Number,
+      default: 0 ,
+    },
+    wishlist:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'User'
+    },
+
 },{
-    timestamps:true,
+  timestamps:true
 });
 
 //Export the model
