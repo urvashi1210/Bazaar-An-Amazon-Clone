@@ -1,4 +1,4 @@
-const Enquiry=require("../models/enqModel");
+const Enquiry=require("../models/enqmodel");
 const asyncHandler=require("express-async-handler");
 const validateMongooseId=require("../utils/validateMongooseId.js")
 
