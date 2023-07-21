@@ -12,6 +12,25 @@ exports.cloudinaryUploadImg = async(fileToUploads)=>{
       resolve(
         {
           url: result.secure_url,
+          asset_id:result.asset_id,
+          public_id:result.public_id
+        },
+        {
+          resource_type : "auto",
+        }
+      );
+    });
+  });
+};
+
+exports.cloudinaryDeleteImg = async(fileToUploads)=>{
+  return new Promise((resolve)=>{
+    cloudinary.uploader.destroy(fileToUploads, (result)=>{
+      resolve(
+        {
+          url: result.secure_url,
+          asset_id:result.asset_id,
+          public_id:result.public_id
         },
         {
           resource_type : "auto",
