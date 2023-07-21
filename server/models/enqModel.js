@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'); // Erase if already required
 
 // Declare the Schema of the Mongo model
-var enquirySchema = new mongoose.Schema({
+var enqSchema = new mongoose.Schema({
     name:{
         type:String,
         required:true,
@@ -18,7 +18,12 @@ var enquirySchema = new mongoose.Schema({
         type:String,
         required:true,
     },
+    status:{
+        type:String,
+        default:"Submitted",
+        enum:["Submitted","Contacted","In Progress"],
+    }
 });
 
 //Export the model
-module.exports = mongoose.model('Enquiry', enquirySchema);
+module.exports = mongoose.model('Enquiry', enqSchema);
