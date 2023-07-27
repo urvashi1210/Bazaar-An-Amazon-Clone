@@ -52,7 +52,7 @@ const Footer = () => {
                   href="mailto:usam12@gmail.com"
                   className="mt-2 text-white mb-0 d-block"
                 >
-                  usam12@gmail.com
+                  urvashi@gmail.com
                 </a>
                 <div className="social-icons d-flex align-items-center gap-30 mt-4">
                   <a href="#" className="text-white">
@@ -108,7 +108,7 @@ const Footer = () => {
           <div className="row">
             <div className="col-12">
               <p className="text-center mb-0 text-white">
-                &copy; {new Date().getFullYear()}; Created By Saumya
+                &copy; {new Date().getFullYear()}; Created By Urvashi
               </p>
             </div>
           </div>

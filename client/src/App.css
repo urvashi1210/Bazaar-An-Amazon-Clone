@@ -62,7 +62,7 @@ box-shadow:none;
 .header-bottom .dropdown-menu{
 background-color:var(--color-131921);
 width:100%;  
-tranform:translate3d(0px,57px,0px) !important;
+transform:translate3d(0px,57px,0px) !important;
 }
 .header-bottom .dropdown-item{
   padding:20px;
