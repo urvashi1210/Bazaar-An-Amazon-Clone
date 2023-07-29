@@ -39,7 +39,7 @@ const Footer = () => {
               <div>
                 <address className="text-white fs-6">
                   Hno: 344 Near White Villa,
-                  <br /> Mumbai <br />
+                  <br /> Bangalore <br />
                   PinCode:116748
                 </address>
                 <a
@@ -52,7 +52,7 @@ const Footer = () => {
                   href="mailto:usam12@gmail.com"
                   className="mt-2 text-white mb-0 d-block"
                 >
-                  urvashi@gmail.com
+                  Urvashi@gmail.com
                 </a>
                 <div className="social-icons d-flex align-items-center gap-30 mt-4">
                   <a href="#" className="text-white">
