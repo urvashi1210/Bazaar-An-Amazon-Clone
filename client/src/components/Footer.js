@@ -40,7 +40,7 @@ const Footer = () => {
                 <address className="text-white fs-6">
                   Hno: 344 Near White Villa,
                   <br /> Bangalore <br />
-                  PinCode:116748
+                  PinCode:560002
                 </address>
                 <a
                   href="tel : +917684307576"
