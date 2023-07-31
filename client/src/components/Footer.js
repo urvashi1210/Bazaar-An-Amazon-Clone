@@ -49,7 +49,7 @@ const Footer = () => {
                   +917684307576
                 </a>
                 <a
-                  href="mailto:usam12@gmail.com"
+                  href="mailto:urvashi12@gmail.com"
                   className="mt-2 text-white mb-0 d-block"
                 >
                   Urvashi@gmail.com
