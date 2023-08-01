@@ -38,7 +38,7 @@ const Footer = () => {
               <h4 className="mb-4 text-white">Contact Us</h4>
               <div>
                 <address className="text-white fs-6">
-                  Hno: 344 Near White Villa,
+                  Building No: 344 Near JW Marriot,
                   <br /> Bangalore <br />
                   PinCode:560002
                 </address>
