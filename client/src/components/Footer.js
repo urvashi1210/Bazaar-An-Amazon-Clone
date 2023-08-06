@@ -107,7 +107,7 @@ const Footer = () => {
           <div className="row">
             <div className="col-12">
               <p className="text-center mb-0 text-white">
-                &copy; {new Date().getFullYear()}; Created By Urvashi Shukla
+                &copy; {new Date().getFullYear()}; Created By - Urvashi Shukla
               </p>
             </div>
           </div>
