@@ -71,5 +71,18 @@ transform:translate3d(0px,57px,0px) !important;
 }
 .header-bottom .dropdown-item:hover{
 background-color:transparent;
+color:var(--color-febd69) !important;
 }
 /*Header Par End here */
+
+/*Footer part*/
+
+footer{
+  background-color:var(--color-232f3e);
+}
+
+footer:not(:first-child){
+  border-top:1px solid rgba(255,255,255,.1);
+}
+
+/*Footer part*/
