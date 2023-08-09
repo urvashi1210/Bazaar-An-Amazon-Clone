@@ -1,5 +1,5 @@
 import React from "react";
-
+import {Link} from 'react-router-dom';
 const Footer = () => {
   return (
     <>
@@ -21,12 +21,38 @@ const Footer = () => {
   </div>
 </div>
       </footer>
-      <footer className="py-3"></footer>
+      <footer className="py-3">
+        <div className="container-xxl">
+          <div className="row">
+            <div className="col-4">
+            <h4 className="text white mb-4">Contact Us</h4>
+            <div></div>
+            </div>
+            <div className="col-3">
+            <h4 className="text white mb-4">Information</h4>
+            <div></div>
+            </div>
+            <div className="col-3">
+            <h4 className="text white mb-4">Account</h4>
+            <div></div>   
+            </div>
+            <div className="col-2">
+            <h4 className="text white mb-4">Quick Links</h4>
+            <div className="footer-links">
+              <Link className="text-white py-2 mb-1">Laptops</Link>
+              <Link className="text-white py-2 mb-1">Headphones</Link>
+              <Link className="text-white py-2 mb-1">Tablets</Link>
+              <Link className="text-white py-2 mb-1">Watches</Link>
+            </div>   
+            </div>
+          </div>
+        </div>
+      </footer>
       <footer className="py-4">
         <div className="container-xxl">
           <div className="row">
             <div className="col-12">
-              <p className="text-center mb-0 text-white">&copy; {new Date().getFullYear()} : Powered by Developer's Corner</p>
+              <p className="text-center mb-0 text-white">&copy; {new Date().getFullYear()} : Created & Powered by Urvashi Shukla</p>
             </div>
           </div>
         </div>
