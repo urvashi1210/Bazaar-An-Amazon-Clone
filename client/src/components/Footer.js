@@ -26,7 +26,7 @@ const Footer = () => {
           <div className="row">
             <div className="col-4">
             <h4 className="text white mb-4">Contact Us</h4>
-            <div></div>
+            <div className="footer-link d-flex flex-column"></div>
             </div>
             <div className="col-3">
             <h4 className="text white mb-4">Information</h4>
