@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from 'react-router-dom';
+import {BsLinkedin,BsGithub,BsYoutube,BsInstagram} from 'react-icons/bs'
 const Footer = () => {
   return (
     <>
@@ -26,7 +27,26 @@ const Footer = () => {
           <div className="row">
             <div className="col-4">
             <h4 className="text-white mb-4">Contact Us</h4>
-            <div className="footer-link d-flex flex-column"></div>
+            <div>
+              <address className="text-white fs-6">Hno : 143 Near JW Hall, Noida <br/>
+              Pincode : 201301</address>
+              <a href="tel:+91 9876543210" className="mt-3 d-block mb-2 text-white">+91 9876543210</a>
+              <a href="mailto:urvashishukla@gmail.com" className="mt-2 d-block mb-2 text-white">urvashishukla@gmail.com</a>
+              <div className="social_icons d-flex align-items-center gap-30">
+                <a className="text-white" href="">
+                  <BsLinkedin className="fs-4"/>
+                </a>
+                <a className="text-white" href="">
+                  <BsInstagram className="fs-4"/>
+                </a>
+                <a className="text-white" href="">
+                  <BsGithub className="fs-4"/>
+                </a>
+                <a className="text-white" href="">
+                  <BsYoutube className="fs-4"/>
+                </a>
+              </div>
+            </div>
             </div>
             <div className="col-3">
             <h4 className="text-white mb-4">Information</h4>
