@@ -2,6 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import Marquee from 'react-fast-marquee'
 import BlogCard from '../components/BlogCard.js'
+import ProductCard from '../components/ProductCard.js'
+
 const Home = () => {
   return <>
   <section className="home-wrapper-1 py-5">
@@ -70,7 +72,7 @@ const Home = () => {
               </p>
             </div>
           </div>
-          <div className="small-banner position-relative p-3">
+          <div className="small-banner position-relative">
             <img src="images/catbanner-04.jpg" className="img-fluid rounded-3" alt="main banner"/>
             <div className="small-banner-content position-absolute">
               <h4>
@@ -262,6 +264,19 @@ const Home = () => {
             </Marquee>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+  <section className="blog-wrapper py-5 home-wrapper-2">
+    <div className="container-xxl">
+      <div className="row">
+        <div className="col-12">
+          <h3 className="section-heading">Featured Collection</h3>
+        </div>
+        <ProductCard></ProductCard>
+        <ProductCard></ProductCard>
+        <ProductCard></ProductCard>
+        <ProductCard></ProductCard>
       </div>
     </div>
   </section>
