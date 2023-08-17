@@ -10,7 +10,7 @@ const BlogCard = () => {
         <div className="card-image">
             <img src="images/blog-1.jpg" className="img-fluid" alt="blog" />
             {/* img fluid : 1.img automatically adjusts to fit the width of parent container
-            2. maintains the original aspect ration of the img */}
+            2. maintains the original aspect ratio of the img */}
             <div className="blog-content">
                 <p className="date">1 Dec, 2022</p>
                 <h5 className="title">
