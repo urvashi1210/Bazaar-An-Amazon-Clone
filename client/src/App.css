@@ -345,3 +345,14 @@ font-size:13px;
   right:17px;
 }
 /*Product card ends*/
+
+
+/*Special Product*/
+
+.special-product-card{
+  padding:10px;
+  border-radius:10px;
+  background-color:white;
+}
+
+/*Special Product ends here*/
