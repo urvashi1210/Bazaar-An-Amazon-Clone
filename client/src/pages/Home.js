@@ -251,9 +251,9 @@ const Home = () => {
   </section>
   <section className="famous-wrapper py-5 home-wrapper-2">
    <div className="container-xxl">
-    <div className="row">
+    {/* <div className="row">
       <div className="col-3">
-        <div className="famous-card bg-dark position-relative">
+        <div className="famous-card position-relative">
           <img src="images/famous-1.webp" alt="famous" />
           <div className="famous-content position-absolute">
           <h5>Big Screen</h5>
@@ -262,7 +262,80 @@ const Home = () => {
         </div>
         </div>
       </div>
-      </div>
+      </div> */}
+        <div className="row">
+
+
+          <div className="col-3">
+            <div className="famous-card position-relative">
+              <img
+                src="images/iphone.png"
+                alt="famous"
+                className="img-fluid bg-dark gap-10"
+              />
+              <div className="famous-content position-absolute">
+                <h5>Big Screen</h5>
+                <h6>Iphone 13 </h6>
+                <p>From $599or $89.62/mo. for 24 mo.*</p>
+              </div>
+            </div>
+          </div>
+
+
+          <div className="col-3">
+            <div className="famous-card position-relative">
+              <img
+                src="images/ipad.png"
+                alt="famous"
+                className="img-fluid bg-white gap-10"
+              />
+              <div className="famous-content position-absolute">
+                <h5 className="text-dark">Latest Model</h5>
+                <h6 className="text-dark">Ipad </h6>
+                <p className="text-dark">From $999or $80.62/mo. for 24 mo.*</p>
+              </div>
+            </div>
+          </div>
+
+
+          <div className="col-3">
+            <div className="famous-card position-relative">
+              <img
+                src="images/bluetooth.png"
+                alt="famous"
+                className="img-fluid bg-white gap-10"
+              />
+
+              <div className="famous-content position-absolute">
+                <h5 className="text-dark">Big Screen</h5>
+                <h6 className="text-dark">JBL BLUETOOTH </h6>
+                <p className="text-dark">From $399or $16.62/mo. for 24 mo.*</p>
+              </div>
+            </div>
+          </div>
+
+
+          <div className="col-3">
+            <div className="famous-card position-relative">
+              <img
+                src="images/headphone.png"
+                alt="famous"
+                className="img-fluid bg-white gap-10"
+              />
+
+              <div className="famous-content position-absolute">
+                <h5 className="text-dark">Enhanced base</h5>
+                <h6 className="text-dark">Bluetooth</h6>
+                <p className="text-dark">From $99or $8.62/mo. for 24 mo.*</p>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+        </div>
       </div> 
   </section>
   <div className="special-wrapper py-5 home-wrapper-2">

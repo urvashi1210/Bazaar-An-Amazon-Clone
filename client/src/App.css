@@ -366,16 +366,25 @@ font-size:13px;
   left:10%;
 }
 
+.famous-car-img{
+  border-radius:10px;
+}
+
+.famous-content p{
+  color:white;
+}
+
 .famous-content h5{
 font-size:13px;
 line-height:20px;
 font-weight:400px;
 color:white;
 margin-bottom:7px;
+text-transform:uppercase;
 }
 
 .famous-content h6{
-  font-size:28px;
+  font-size:24px;
   line-height:38px;
   font-weight:500;
   color:white;
@@ -387,4 +396,14 @@ margin-bottom:7px;
   font-weight:100;
   color:white;
 }
+
+.famous-card img {
+  /* transform: translate(0px,20px); */
+  border-radius: 20px;
+  height: 450px;
+  width: 495px;
+
+  object-fit: contain;
+}
+
 /*Famous card ends here*/
