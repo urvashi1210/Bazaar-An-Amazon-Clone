@@ -331,10 +331,6 @@ const Home = () => {
             </div>
           </div>
 
-
-
-
-
         </div>
       </div> 
   </section>
@@ -345,6 +341,7 @@ const Home = () => {
           <h3 className="section-heading">Special Products</h3>
         </div>
           <div className="row">
+            <SpecialProduct/>
             <SpecialProduct/>
             <SpecialProduct/>
             <SpecialProduct/>

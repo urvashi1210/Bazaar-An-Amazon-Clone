@@ -372,6 +372,8 @@ font-size:13px;
 
 .famous-content p{
   color:white;
+  margin-top: 280px;
+  margin-left:4%;
 }
 
 .famous-content h5{
@@ -398,7 +400,6 @@ text-transform:uppercase;
 }
 
 .famous-card img {
-  /* transform: translate(0px,20px); */
   border-radius: 20px;
   height: 450px;
   width: 495px;
