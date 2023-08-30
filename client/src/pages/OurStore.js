@@ -97,6 +97,21 @@ const OurStore = () => {
     Random Products
   </h3>
   <div>
+    <div className="random-products mb-3 d-flex">
+    <div className="w-50">
+      <img src="images/watch.jpg" className='img-fluid' alt="watch" />
+    </div>
+    <div className='w-75'>
+    <h5>Kids Headphones Bulk 10 pack Multi colored for students</h5>
+    <ReactStars
+    count={5}
+    value={4} edit={false}
+    size={24}
+    activeColor="#ffd700"
+  />
+  <b>$ 300</b>
+    </div>
+    </div>
     <div className="random-products d-flex">
     <div className="w-50">
       <img src="images/watch.jpg" className='img-fluid' alt="watch" />

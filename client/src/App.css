@@ -414,7 +414,7 @@ text-transform:uppercase;
 .filter-card{
   background-color:white;
   border-radius:10px;
-  padding:10px 15px 25px;
+  padding:15px 15px 25px;
 }
 
 .filter-title{
@@ -466,7 +466,7 @@ text-transform:uppercase;
 }
 
 .random-products h5{
-  font-size:15px;
+  font-size:14px;
   margin-bottom: 8px;
 }
 
