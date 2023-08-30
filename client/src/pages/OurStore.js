@@ -42,11 +42,11 @@ const OurStore = () => {
   </div>
   <h5 className="sub-title">Price</h5>
   <div className='d-flex align-items-center gap-10'>
-  <div className="form-floating mb-3">
+  <div className="form-floating">
   <input type="email" className="form-control" id="floatingInput" placeholder="From"/>
   <label htmlFor="floatingInput">From</label>
 </div>
-<div className="form-floating mb-3">
+<div className="form-floating">
   <input type="email" className="form-control" id="floatingInput1" placeholder="To"/>
   <label htmlFor="floatingInput1">To</label>
 </div>
@@ -65,7 +65,17 @@ const OurStore = () => {
         <li></li>
       </ul>
   </div>
-  
+  <h5 className="sub-title">Size</h5>
+<div>
+<div className="form-check">
+  <input className="form-check-input" type="checkbox" value="" id="color-1" />
+  <label className="form-check-label" htmlFor="">S (2)</label>
+</div>
+<div className="form-check">
+  <input className="form-check-input" type="checkbox" value="" id="color-2" />
+  <label className="form-check-label" htmlFor="">M (2)</label>
+</div>
+</div>
   </div>
   </div>
 <div className="filter-card mb-3">
