@@ -51,6 +51,22 @@ const OurStore = () => {
   <label htmlFor="floatingInput1">To</label>
 </div>
   </div>
+  <h5 className="sub-title">Colors</h5>
+  <div>
+    <div className="d-flex flex-wrap">
+      <ul className='colors ps-0'>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
   </div>
   </div>
 <div className="filter-card mb-3">
