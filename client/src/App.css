@@ -464,4 +464,13 @@ text-transform:uppercase;
   background-color: red;
   border-radius:50%;
 }
+
+.random-products h5{
+  font-size:15px;
+  margin-bottom: 8px;
+}
+
+.random-products:first-child{
+  border-bottom:1px solid var(--color-ededed);
+}
 /*Our Store ends here*/
