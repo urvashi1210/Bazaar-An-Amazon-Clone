@@ -1,48 +1,48 @@
-import React from 'react'
-import ReactStars from "react-rating-stars-component";
-import {Link} from 'react-router-dom';
+import ReactStars from 'react-rating-stars-component';
+import { Link } from 'react-router-dom';
 
-const SpecialProduct = () => {
+const SpecialProduct = (props) => {
+  const { id, title, brand, totalrating, price, quantity, sold, images } =
+    props;
+
   return (
-    <div className='col-6 mb-3'>
-      <div className="special-product-card">
-       <div className="d-flex justify-content-between">
-        <div>
-          <img className="img-fluid" src="images/watch.jpg" alt="watch" />
+    <div className="col-lg-4 col-md-6 col-sm-6 col-12 mb-3">
+      <div className="special-product-card" style={{ cursor: 'pointer' }}>
+        <div className="d-flex flex-column flex-sm-row gap-3">
+          <div>
+            <img src={images} className="img-fluid" alt="mobile" />
+          </div>
+          <div className="special-product-content">
+            <h5 className="brand">{brand}</h5>
+            <h6 className="title">{title}</h6>
+            <ReactStars
+              value={totalrating}
+              edit={false}
+              count={5}
+              size={24}
+              activeColor="#ffd700"
+            />
+            <div className="prod-count mt-3">
+              <p>Products: {quantity}</p>
+              <div className="progress">
+                <div
+                  className="progress-bar bg-danger"
+                  role="progressbar"
+                  style={{ width: (quantity / (quantity + sold)) * 100 + '%' }}
+                  aria-valuenow={(quantity / (quantity + sold)) * 100}
+                  aria-valuemin={quantity}
+                  aria-valuemax={quantity + sold}
+                ></div>
+              </div>
+            </div>
+            <Link className="button my-3 text-center" to={`/product/` + id}>
+              View
+            </Link>
+          </div>
         </div>
-        <div className='special-product-content'>
-        <h5 classname="brand">Havels</h5>
-        <h6 className="title">Samsung Galaxy Note+ Mobile Phone; Sim...</h6>
-        <ReactStars
-    count={5}
-    value={4} edit={false}
-    size={24}
-    activeColor="#ffd700"
-  />
-  <p className="price"><span className="red">$100</span>&nbsp;<strike>$200</strike></p>
-  {/* &nbsp(non breaking space) - used to create space between words or elements that should remain together on the same line. */}
-  <div className="discount-till d-flex align-items-center gap-10">
-    <p className="mb-0">
-      <b>5 </b>days
-    </p>
-    <div className="d-flex gap-10 align-items-center">
-      <span className="badge rounded-circle p-3 bg-danger">1</span>:
-      <span className="badge rounded-circle p-3 bg-danger">1</span>:
-      <span className="badge rounded-circle p-3 bg-danger">1</span>
-    </div>
-  </div>
-  <div className="prod-count my-3">
-      <p>Products : 5</p>
-      <div class="progress">
-  <div className="progress-bar" role="progressbar" style={{width:"25%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-    </div>
-    <Link className='button'>Add to Cart</Link>
-        </div>
-        </div> 
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SpecialProduct
+export default SpecialProduct;

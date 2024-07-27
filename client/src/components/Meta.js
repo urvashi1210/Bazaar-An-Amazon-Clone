@@ -1,13 +1,14 @@
-import { Helmet } from "react-helmet";
-import React from 'react'
+import { Helmet } from 'react-helmet';
 
-const Meta = (props) => {
+const Meta = ({ title }) => {
   return (
-    <Helmet>
+    <>
+      <Helmet>
         <meta charSet="utf-8" />
-                <title>{props.title}</title>
-    </Helmet>
-  )
-}
+        <title>{title}</title>
+      </Helmet>
+    </>
+  );
+};
 
-export default Meta
+export default Meta;

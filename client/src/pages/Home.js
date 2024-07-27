@@ -1,420 +1,519 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import Marquee from 'react-fast-marquee'
-import BlogCard from '../components/BlogCard.js'
-import ProductCard from '../components/ProductCard.js'
-import SpecialProduct from '../components/SpecialProduct.js'
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Marquee from 'react-fast-marquee';
+import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment';
+import ReactStars from 'react-rating-stars-component';
+import { toast } from 'react-toastify';
 
+import BlogCard from '../components/BlogCard';
+import SpecialProduct from '../components/SpecialProduct';
+import Container from '../components/Container';
+import { services } from '../utils/Data';
+import { getAllBlogs } from '../features/blogs/blogSlice';
+import {
+  addToWishlist,
+  getAllProducts,
+} from '../features/products/productSlice';
+import wish from '../images/wish.svg';
+import addcart from '../images/add-cart.svg';
+import view from '../images/view.svg';
+import prodcompare from '../images/prodcompare.svg';
+import { getUserCart } from '../features/user/userSlice';
+import FamousSlider from '../components/FamousSlider';
+import MainBannerSlider from '../components/MainBannerSlider';
+import Loader from '../components/Loader';
 
 const Home = () => {
-  return <>
-  <section className="home-wrapper-1 py-5">
-    <div className="container-xxl">
-      <div className="row">
-        <div className="col-6">
-          <div className="main-banner position-relative">
-            <img src="images/main-banner-1.jpg" className="img-fluid rounded-3" alt="main banner"/>
-            <div className="main-banner-content position-absolute">
-              <h4>
-                SUPERCHARGED FOR PROS.
-              </h4>
-              <h5>
-                iPad S13+ Pro.
-              </h5>
-              <p>
-                From $999.00 or $41.62/mo.
-              </p>
-              <Link className="button">
-                BUY NOW
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="col-6">
-        <div className="d-flex flex-wrap gap-10 justify-content-between align-items-center">
-        <div className="small-banner position-relative">
-            <img src="images/catbanner-01.jpg" className="img-fluid rounded-3" alt="main banner"/>
-            <div className="small-banner-content position-absolute">
-              <h4>
-               Best Sale
-              </h4>
-              <h5>
-                iPad S13+ Pro.
-              </h5>
-              <p>
-                From $999.00 <br/> or $41.62/mo.
-              </p>
-            </div>
-          </div>
-          <div className="small-banner position-relative">
-            <img src="images/catbanner-02.jpg" className="img-fluid rounded-3" alt="main banner"/>
-            <div className="small-banner-content position-absolute">
-              <h4>
-                NEW ARRIVAL
-              </h4>
-              <h5>
-                Buy iPad Air
-              </h5>
-              <p>
-                From $999.00 <br/> or $41.62/mo.
-              </p>
-            </div>
-          </div>
-          <div className="small-banner position-relative">
-            <img src="images/catbanner-03.jpg" className="img-fluid rounded-3" alt="main banner"/>
-            <div className="small-banner-content position-absolute">
-              <h4>
-                NEW ARRIVAL
-              </h4>
-              <h5>
-                Buy iPad Air
-              </h5>
-              <p>
-                From $999.00 <br/> or $41.62/mo.
-              </p>
-            </div>
-          </div>
-          <div className="small-banner position-relative">
-            <img src="images/catbanner-04.jpg" className="img-fluid rounded-3" alt="main banner"/>
-            <div className="small-banner-content position-absolute">
-              <h4>
-                NEW ARRIVAL
-              </h4>
-              <h5>
-                Buy iPad Air
-              </h5>
-              <p>
-                From $999.00 <br/> or $41.62/mo.
-              </p>
-            </div>
-          </div>
-        </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section className="home-wrapper-2 py-5">
-    <div className="container-xxl">
-      <div className="row">
-        <div className="col-12">
-          <div className="services d-flex align-items-center justify-content-between">
-            <div className="d-flex align-items-center gap-15">
-              <img src="images/service.png" alt="services"/>
-              <div>
-                <h6>Free Shipping</h6>
-                <p className="mb-0">From all orders over $5</p>
-              </div>
-            </div>
-            <div className="d-flex align-items-center gap-15">
-              <img src="images/service-02.png" alt="services"/>
-              <div>
-                <h6>Daily Surprise Offers</h6>
-                <p className="mb-0">Save upto 25% off</p>
-              </div>
-            </div>
-            <div className="d-flex align-items-center gap-15">
-              <img src="images/service-03.png" alt="services"/>
-              <div>
-                <h6>Support 24/7</h6>
-                <p className="mb-0">Shop with an expert</p>
-              </div>
-            </div>
-            <div className="d-flex align-items-center gap-15">
-              <img src="images/service-04.png" alt="services"/>
-              <div>
-                <h6>Affordable prices</h6>
-                <p className="mb-0">Get Factory Default Price</p>
-              </div>
-            </div>
-            <div className="d-flex align-items-center gap-15">
-              <img src="images/service-05.png" alt="services"/>
-              <div>
-                <h6>Secure Payments</h6>
-                <p className="mb-0">100% Protected Payment</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section className="home-wrapper-2 py-5">
-    <div className="container-xxl">
-      <div className="row">
-        <div className="col-12">
-          <div className="categories d-flex  flex-wrap justify-content-between align-items-center">
-          <div className="d-flex gap align-items-center">
-            <div>
-              <h6>
-                Cameras
-              </h6>
-              <p>
-                10 Items
-              </p>
-            </div>
-            <img src="images/camera.jpg" alt="camera" />
-          </div>
-          <div className="d-flex gap align-items-center">
-            <div>
-              <h6>
-                Smart TV
-              </h6>
-              <p>
-                10 Items
-              </p>
-            </div>
-            <img src="images/tv.jpg" alt="tv" />
-          </div>
-          <div className="d-flex gap align-items-center">
-            <div>
-              <h6>
-                Headphones
-              </h6>
-              <p>
-                10 Items
-              </p>
-            </div>
-            <img src="images/headphone.jpg" alt="watch" />
-          </div>
-          <div className="d-flex gap align-items-center">
-            <div>
-              <h6>
-                Music & Gaming
-              </h6>
-              <p>
-                10 Items
-              </p>
-            </div>
-            <img src="images/laptop.jpg" alt="camera" />
-          </div>
-          <div className="d-flex gap align-items-center">
-            <div>
-              <h6>
-                Cameras
-              </h6>
-              <p>
-                10 Items
-              </p>
-            </div>
-            <img src="images/camera.jpg" alt="camera" />
-          </div>
-          <div className="d-flex gap-30 align-items-center">
-            <div>
-              <h6>
-                Smart TV
-              </h6>
-              <p>
-                10 Items
-              </p>
-            </div>
-            <img src="images/tv.jpg" alt="tv" />
-          </div>
-          <div className="d-flex gap align-items-center">
-            <div>
-              <h6>
-                Headphones
-              </h6>
-              <p>
-                10 Items
-              </p>
-            </div>
-            <img src="images/headphone.jpg" alt="watch" />
-          </div>
-          <div className="d-flex gap align-items-center">
-            <div>
-              <h6>
-                Music & Gaming
-              </h6>
-              <p>
-                10 Items
-              </p>
-            </div>
-            <img src="images/laptop.jpg" alt="camera" />
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section className="featured-wrapper py-5 home-wrapper-2">
-    <div className="container-xxl">
-      <div className="row">
-        <div className="col-12">
-          <h3 className="section-heading">Featured Collection</h3>
-        </div>
-        <ProductCard></ProductCard>
-        <ProductCard></ProductCard>
-        <ProductCard></ProductCard>
-        <ProductCard></ProductCard>
-      </div>
-    </div>
-  </section>
-  <section className="famous-wrapper py-5 home-wrapper-2">
-   <div className="container-xxl">
-    {/* <div className="row">
-      <div className="col-3">
-        <div className="famous-card position-relative">
-          <img src="images/famous-1.webp" alt="famous" />
-          <div className="famous-content position-absolute">
-          <h5>Big Screen</h5>
-          <h6>Smart Watch Series 7</h6>
-          <p>From $399 or $16.62/mo. for 24 mo. </p>
-        </div>
-        </div>
-      </div>
-      </div> */}
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(true);
+
+  const blogState = useSelector((state) => state?.blog?.blog);
+  const productState = useSelector((state) => state.product.product);
+
+  const getBlogs = () => {
+    dispatch(getAllBlogs())
+      .then(() => setLoading(false))
+      .catch((error) => {
+        console.error('Error fetching blogs:', error);
+        setLoading(false);
+      });
+  };
+
+  const getProducts = () => {
+    dispatch(getAllProducts())
+      .then(() => setLoading(false))
+      .catch((error) => {
+        console.error('Error fetching products:', error);
+        setLoading(false);
+      });
+  };
+
+  const addToWish = (id) => {
+    dispatch(addToWishlist(id));
+    toast.success('Item added to wishlist!');
+  };
+
+  const getCartItems = () => {
+    dispatch(getUserCart());
+  };
+
+  useEffect(() => {
+    getBlogs();
+    getProducts();
+    getCartItems();
+  }, []);
+
+  const smallBanners = [
+    {
+      image: 'images/headphones.jpg',
+      alt: 'free engraving',
+      title: 'free engraving',
+      subtitle: 'Headsets',
+      price: 'From ₹399',
+    },
+    {
+      image: 'images/smartwatch.jpg',
+      alt: '15% off',
+      title: '15% off',
+      subtitle: 'Watches',
+      price: 'From ₹999',
+    },
+    {
+      image: 'images/catbanner-03.jpg',
+      alt: 'new arrivals',
+      title: 'new arrivals',
+      subtitle: 'Buy iPads',
+      price: 'From ₹19,999',
+    },
+    {
+      image: 'images/laptop.jpg',
+      alt: 'best sale',
+      title: 'best sale',
+      subtitle: 'Laptops',
+      price: 'From ₹20,999',
+    },
+    
+  ];
+
+  const mainBannersData = [
+    {
+      image: 'images/iphone-main2.jpg',
+      alt: 'main banner 1',
+      title: 'NEW YEAR SALE',
+      subtitle: 'iPhone 15',
+      priceInfo: 'Shop Now!',
+      link: '/product',
+    },
+    {
+      image: 'images/main-banner.jpg',
+      alt: 'main banner 2',
+      title: 'New Arrivals',
+      subtitle: 'Spring Fashion',
+      priceInfo: 'Discover More',
+      link: '/product',
+    },
+    {
+      image: 'images/earphns2.jpg',
+      alt: 'main banner 3',
+      title: 'Limited Time Offer',
+      subtitle: 'Summer Essentials',
+      priceInfo: 'Get Yours Now!',
+      link: '/product',
+    },
+  ];
+
+  const famousItemsData = [
+    {
+      imageSrc: '/images/famous-12.jpg',
+      title: 'Big screen',
+      subTitle: 'Smart Watch Series 7',
+      description: 'From ₹999 or ₹160/mo. for 24 mo.*',
+      color: '',
+    },
+    {
+      imageSrc: '/images/famous-2.webp',
+      title: 'Macbook',
+      subTitle: 'Apple Macbook Air M1',
+      description: 'Apple M1 Processor',
+      color: 'text-dark',
+    },
+    {
+      imageSrc: '/images/iphn10.jpg',
+      title: 'Smartphones',
+      subTitle: 'APPLE iPhone 14 Pro',
+      description: 'Retina Display',
+      color: 'text-dark',
+    },
+    {
+      imageSrc: '/images/famous-4.webp',
+      title: 'Home Speakers',
+      subTitle: 'Room Filling Sound',
+      description: 'EMI starts at ₹167. No Cost EMI available',
+      color: 'text-dark',
+    },
+  ];
+
+  return (
+    <>
+      <Container className="home-wrapper-1 py-5">
         <div className="row">
+          <div className="col-lg-6 mb-4">
+            <MainBannerSlider mainBannersData={mainBannersData} />
+          </div>
+          <div className="col-lg-6 mt-2">
+            <div className="d-flex flex-wrap gap-10 justify-content-between">
+              {smallBanners.map((banner, index) => (
+                <div
+                  className="small-banner position-relative mb-2 mt-2"
+                  key={index}
+                >
+                  <img
+                    className="img-fluid rounded-3"
+                    src={banner.image}
+                    alt={banner.alt}
+                  />
+                   <div className="banner-overlay"></div>
+                  <Link
+                    to="/product"
+                    className="small-banner-content position-absolute"
+                  >
+                    <h4>{banner.title}</h4>
+                    <h5 className="text-black">{banner.subtitle}</h5>
+                    <p>{banner.price}</p>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Container>
 
+      <Container class1={'home-wrapper-2 py-5'}>
+        <div className="row">
+          <div className="col-lg-12 col-md-12">
+            <div className="services d-flex flex-wrap align-items-center justify-content-between">
+              {services?.map((service, index) => {
+                return (
+                  <div
+                    className="d-flex flex-column align-items-center gap-10 mb-4"
+                    key={index}
+                  >
+                    <img
+                      src={service.image}
+                      alt="services"
+                      className="img-fluid"
+                    />
+                    <div>
+                      <h6 className="text-center">{service.title}</h6>
+                      <p className="text-center mb-0">{service.tagline}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </Container>
 
-          <div className="col-3">
-            <div className="famous-card position-relative">
-              <img
-                src="images/iphone.png"
-                alt="famous"
-                className="img-fluid bg-dark gap-10"
-              />
-              <div className="famous-content position-absolute">
-                <h5>Big Screen</h5>
-                <h6>Iphone 13 </h6>
-                <p>From $599or $89.62/mo. for 24 mo.*</p>
+      <Container class1={'featured-wrapper py-2 home-wrapper-2'}>
+        <div className="row">
+          <div className="col-12">
+            <h3 className="section-heading">Featured Collection</h3>
+          </div>
+
+          <>
+  {(() => {
+    console.log("displaying");
+    return null;
+  })()}
+  {loading ? (
+    console.log("loading products")
+  ) : (
+    productState &&
+    productState.map((item, index) => {
+      if (item.tags === 'featured') {
+        return (
+          <div key={index} className="col-lg-3 col-md-4 col-sm-6 col-6">
+            <div className="product-card position-relative mb-3" style={{ cursor: 'pointer' }}>
+              <div className="wishlist-icon position-absolute">
+                <button className="border-0 bg-transparent" onClick={() => addToWish(item?._id)}>
+                  <img src={wish} alt="wishlist" />
+                </button>
+              </div>
+              <div className="product-image" onClick={() => navigate('/product/' + item?._id)}>
+                <img src={item?.images[0]?.url} alt="products" className="img-fluid" />
+                <img src={item?.images[1]?.url} alt="products" className="img-fluid" />
+
+              </div>
+              <div className="product-details">
+                <h6 className="brand">{item?.brand}</h6>
+                <h5 className="product-title">{item?.title}</h5>
+                <ReactStars value={+item?.totalrating} edit={false} count={5} size={24} activeColor="#ffd700" />
+                <p className="price">₹{item.price}</p>
+              </div>
+              <div className="action-bar position-absolute">
+                <div className="d-flex flex-column gap-15">
+                  <button className="border-0 bg-transparent">
+                    <img src={prodcompare} alt="compare" />
+                  </button>
+                  <button className="border-0 bg-transparent">
+                    <img onClick={() => navigate('/product/' + item?._id)} src={view} alt="view" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-
-
-          <div className="col-3">
-            <div className="famous-card position-relative">
-              <img
-                src="images/ipad.png"
-                alt="famous"
-                className="img-fluid bg-white gap-10"
-              />
-              <div className="famous-content position-absolute">
-                <h5 className="text-dark">Latest Model</h5>
-                <h6 className="text-dark">Ipad </h6>
-                <p className="text-dark">From $999or $80.62/mo. for 24 mo.*</p>
-              </div>
-            </div>
-          </div>
-
-
-          <div className="col-3">
-            <div className="famous-card position-relative">
-              <img
-                src="images/bluetooth.png"
-                alt="famous"
-                className="img-fluid bg-white gap-10"
-              />
-
-              <div className="famous-content position-absolute">
-                <h5 className="text-dark">Big Screen</h5>
-                <h6 className="text-dark">JBL BLUETOOTH </h6>
-                <p className="text-dark">From $399or $16.62/mo. for 24 mo.*</p>
-              </div>
-            </div>
-          </div>
-
-
-          <div className="col-3">
-            <div className="famous-card position-relative">
-              <img
-                src="images/headphone.png"
-                alt="famous"
-                className="img-fluid bg-white gap-10"
-              />
-
-              <div className="famous-content position-absolute">
-                <h5 className="text-dark">Enhanced base</h5>
-                <h6 className="text-dark">Bluetooth</h6>
-                <p className="text-dark">From $99or $8.62/mo. for 24 mo.*</p>
-              </div>
-            </div>
-          </div>
+        );
+      }
+    })
+  )}
+</>
 
         </div>
-      </div> 
-  </section>
-  {/* st */}
-  <div className="special-wrapper py-5 home-wrapper-2">
-    <div className="container-xxl">
-      <div className="row">
-        <div className="col-12">
-          <h3 className="section-heading">Special Products</h3>
+      </Container>
+
+      <Container class1={'famous-wrapper py-5 home-wrapper-2'}>
+        <div className="row">
+          <div className="container-fluid famous-wrapper py-5 home-wrapper-2">
+            <div className="">
+              <FamousSlider
+                famousItemsData={famousItemsData}
+                navigate={navigate}
+              />
+            </div>
+          </div>
         </div>
+      </Container>
+
+      <Container class1={'special-wrapper py-5 home-wrapper-2'}>
+        <div className="row">
+          <div className="col-12">
+            <h3 className="section-heading">Special Products</h3>
+          </div>
           <div className="row">
-            <SpecialProduct/>
-            <SpecialProduct/>
-            <SpecialProduct/>
-            <SpecialProduct/>
-          </div>
-      </div>
-    </div>
-  </div>
-  <div className="popular-wrapper py-5 home-wrapper-2">
-    <div className="container-xxl">
-      <div className="row">
-        <div className="col-12">
-          <h3 className="section-heading">Our Popular Products</h3>
-        </div>
-        </div>
-          <div className="row">
-            {/* <div className="col-2"><div className="card"></div></div>
-            <div className="col-2"><div className="card"></div></div> */}
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-            <ProductCard/>
-          </div>
-    </div>
-  </div>
-  <section className="marque-wrapper py-5">
-    <div className="container-xxl">
-      <div className="row">
-        <div className="col-12">
-          <div className="marquee-inner-wrapper card-wrapper">
-          <Marquee className="d-flex">
-            <div className="mx-4 w-25">
-              <img src="images/brand-01.png" alt="brand" />
-            </div>
-            <div className="mx-4 w-25">
-              <img src="images/brand-02.png" alt="brand" />
-            </div>
-            <div className="mx-4 w-25">
-              <img src="images/brand-03.png" alt="brand" />
-            </div>
-            <div className="mx-4 w-25">
-              <img src="images/brand-04.png" alt="brand" />
-            </div>
-            <div className="mx-4 w-25">
-              <img src="images/brand-05.png" alt="brand" />
-            </div>
-            <div className="mx-4 w-25">
-              <img src="images/brand-06.png" alt="brand" />
-            </div>
-            <div className="mx-4 w-25">
-              <img src="images/brand-07.png" alt="brand" />
-            </div>
-            </Marquee>
+            {loading ? (
+              <Loader message={'Fetching products, please wait...'} />
+            ) : (
+              productState &&
+              productState.map((item, index) => {
+                if (item.tags === 'special') {
+                  return (
+                    <SpecialProduct
+                      key={index}
+                      id={item?._id}
+                      title={item?.title}
+                      brand={item?.brand}
+                      totalrating={+item?.totalrating}
+                      price={item?.price}
+                      quantity={item?.quantity}
+                      sold={item?.sold ? item?.sold : 0}
+                      images={item?.images[0]?.url}
+                    />
+                  );
+                }
+              })
+            )}
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <section className="blog-wrapper py-5 home-wrapper-2">
-    <div className="container-xxl">
-      <div className="row">
-        <div className="col-12">
-          <h3 className="section-heading">Our Latest Blogs</h3>
-        </div>
-        <BlogCard></BlogCard>
-        <BlogCard></BlogCard>
-        <BlogCard></BlogCard>
-        <BlogCard></BlogCard>
-      </div>
-    </div>
-  </section>
+      </Container>
 
-  </>
-}
+      <Container class1={'popular-wrapper py-5 home-wrapper-2'}>
+        <div className="row">
+          <div className="col-12">
+            <h3 className="section-heading">Our Popular Products</h3>
+          </div>
+        </div>
+        <div className="row">
+          <>
+            {loading ? (
+              <Loader message={'Fetching products, please wait...'} />
+            ) : (
+              productState &&
+              productState.map((item, index) => {
+                if (item.tags === 'popular') {
+                  return (
+                    <div
+                      key={index}
+                      className={'col-lg-3 col-md-4 col-sm-6 col-6'}
+                    >
+                      <div
+                        className="product-card position-relative"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => navigate(`/product/${item?._id}`)}
+                      >
+                        <div className="wishlist-icon position-absolute">
+                          <button
+                            className="border-0 bg-transparent"
+                            onClick={() => addToWish(item?._id)}
+                          >
+                            <img src={wish} alt="wishlist" />
+                          </button>
+                        </div>
+
+                        <div className="product-image ">
+                          <img
+                            src={item?.images[0]?.url}
+                            
+                            alt="products"
+                            className=""
+                            width={250}
+                            height={200}
+                          />
+                          <img
+                            src={item?.images[1]?.url}
+                            alt="products"
+                            className=""
+                            width={250}
+                            height={200}
+                          />
+                        </div>
+                        <div className="product-details">
+                          <h6 className="brand">{item?.brand}</h6>
+                          <h5 className="product-title">{item?.title}</h5>
+                          <ReactStars
+                            value={+item?.totalrating}
+                            edit={false}
+                            count={5}
+                            size={24}
+                            activeColor="#ffd700"
+                          />
+
+                          <p className="price">₹{item.price}</p>
+                        </div>
+                        <div className="action-bar position-absolute">
+                          <div className="d-flex flex-column gap-15">
+                            <button className="border-0 bg-transparent">
+                              <img src={prodcompare} alt="compare" />
+                            </button>
+                            <button className="border-0 bg-transparent">
+                              <img
+                                onClick={() =>
+                                  navigate('/product/' + item?._id)
+                                }
+                                src={view}
+                                alt="view"
+                              />
+                            </button>
+                            {/* <button className="border-0 bg-transparent">
+                            <img src={addcart} alt="addcart" />
+                          </button> */}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+              })
+            )}
+          </>
+        </div>
+      </Container>
+
+      <Container className={'marque-wrapper py-5'}>
+        <div className="row">
+          <div className="col-12">
+            <div className="marquee-inner-wrapper card-wrapper">
+              <Marquee>
+                <div className="d-flex">
+                  <div className="mx-2 mx-sm-4 w-25">
+                    <img
+                      src="images/brand-01.png"
+                      alt="brand"
+                      className="img-fluid"
+                    />
+                  </div>
+                  <div className="mx-2 mx-sm-4 w-25">
+                    <img
+                      src="images/brand-02.png"
+                      alt="brand"
+                      className="img-fluid"
+                    />
+                  </div>
+                  <div className="mx-2 mx-sm-4 w-25">
+                    <img
+                      src="images/brand-03.png"
+                      alt="brand"
+                      className="img-fluid"
+                    />
+                  </div>
+                  <div className="mx-2 mx-sm-4 w-25">
+                    <img
+                      src="images/brand-04.png"
+                      alt="brand"
+                      className="img-fluid"
+                    />
+                  </div>
+                  <div className="mx-2 mx-sm-4 w-25">
+                    <img
+                      src="images/brand-05.png"
+                      alt="brand"
+                      className="img-fluid"
+                    />
+                  </div>
+                  <div className="mx-2 mx-sm-4 w-25">
+                    <img
+                      src="images/brand-06.png"
+                      alt="brand"
+                      className="img-fluid"
+                    />
+                  </div>
+                  <div className="mx-2 mx-sm-4 w-25">
+                    <img
+                      src="images/brand-07.png"
+                      alt="brand"
+                      className="img-fluid"
+                    />
+                  </div>
+                  <div className="mx-2 mx-sm-4 w-25">
+                    <img
+                      src="images/brand-08.png"
+                      alt="brand"
+                      className="img-fluid"
+                    />
+                  </div>
+                </div>
+              </Marquee>
+            </div>
+          </div>
+        </div>
+      </Container>
+
+      <Container class1={'blog-wrapper py-5 home-wrapper-2'}>
+        <div className="row">
+          <div className="col-12">
+            <h3 className="section-heading">Our Latest Blogs</h3>
+          </div>
+        </div>
+        <div className="row">
+          {loading ? (
+            <Loader message={'Fetching blogs, please wait...'} />
+          ) : (
+            blogState &&
+            blogState?.map((blog, index) => {
+              if (index < 4) {
+                return (
+                  <div className="col-lg-3 col-md-6 col-sm-12 mb-4" key={index}>
+                    <BlogCard
+                      id={blog?._id}
+                      title={blog?.title}
+                      description={blog?.description}
+                      image={blog?.images[0]?.url}
+                      date={moment(blog?.createdAt).format(
+                        'MMMM Do YYYY, h:mm a'
+                      )}
+                    />
+                  </div>
+                );
+              }
+            })
+          )}
+        </div>
+      </Container>
+    </>
+  );
+};
 
 export default Home;

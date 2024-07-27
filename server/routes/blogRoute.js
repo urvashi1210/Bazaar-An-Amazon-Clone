@@ -1,26 +1,34 @@
-const express = require('express');
+import express from 'express';
+
+import { isAdmin, authMiddleware } from '../middlewares/authMiddleware.js';
+import {
+  createBlog,
+  updateBlog,
+  getBlog,
+  getAllBlogs,
+  deleteBlog,
+  likeBlog,
+  disLikeBlog,
+  uploadImages,
+} from '../controller/blogCtrl.js';
+import { blogImgResize, uploadPhoto } from '../middlewares/uploadImages.js';
+
 const router = express.Router();
-const blogController = require('../controller/blogCtrl');
-const authMiddleware = require('../middlewares/authMiddleware');
-const uploadImage = require('../middlewares/uploadImage');
 
-
-router.post('/',authMiddleware.authMiddleware,authMiddleware.isAdmin,blogController.createBlog);
-router.get('/',blogController.getAllBlogs);
+router.post('/', authMiddleware, isAdmin, createBlog);
 router.put(
-  '/upload/:id'
-  ,authMiddleware.authMiddleware
-  ,authMiddleware.isAdmin 
-  ,uploadImage.uploadPhoto.array('images',10)
-  ,uploadImage.blogImgResize
-  ,blogController.uploadImages
-  );
+  '/upload/:id',
+  authMiddleware,
+  isAdmin,
+  uploadPhoto.array('images', 2),
+  blogImgResize,
+  uploadImages
+);
+router.put('/likes', authMiddleware, likeBlog);
+router.put('/dislikes', authMiddleware, disLikeBlog);
+router.put('/:id', authMiddleware, isAdmin, updateBlog);
+router.get('/:id', getBlog);
+router.get('/', getAllBlogs);
+router.delete('/:id', authMiddleware, isAdmin, deleteBlog);
 
-router.put('/likes',authMiddleware.authMiddleware,blogController.likeBlog);
-router.put('/dislikes',authMiddleware.authMiddleware,blogController.disLikeBlog);
-router.get('/:id',blogController.getBlog);
-router.patch('/:id',authMiddleware.authMiddleware,authMiddleware.isAdmin,blogController.updateBlog);
-router.delete('/:id',authMiddleware.authMiddleware,authMiddleware.isAdmin,blogController.deleteBlog);
-
-
-module.exports = router;
+export default router;

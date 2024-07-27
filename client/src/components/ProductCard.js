@@ -1,94 +1,107 @@
-import React from 'react'
-import ReactStars from "react-rating-stars-component";
-import {Link, useLocation} from 'react-router-dom';
+import ReactStars from 'react-rating-stars-component';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-const ProductCard = (props) => {
-  let location=useLocation();
-const {grid}=props;
+import prodcompare from '../images/prodcompare.svg';
+import wish from '../images/wish.svg';
+import addcart from '../images/add-cart.svg';
+import view from '../images/view.svg';
+import { addToWishlist } from '../features/products/productSlice';
+
+const ProductCard = ({ grid, data }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  let location = useLocation();
+
+  const addToWish = (id) => {
+    dispatch(addToWishlist(id));
+  };
+
   return (
     <>
-    <div className={`${location.pathname==`/store`?`gr-${grid}`:`col-3`}`}>
-      <Link className="product-card position-relative">
-        <div className="wishlist-icon position-absolute">
-          <Link>
-          <img src="images/wish.svg" alt="wishlist" />
-          </Link>
-        </div>
-        <div className="product-image">
-        <img src="images/watch.jpg" alt="product img" />
-        <img className="img-fluid" src="images/watch-1.jpeg" alt="product img " />
-      </div>
-      <div className="product-details">
-        <h6 className="brand">Havels</h6>
-        <h5 className="product-title">
-         Kids headphones bulk 10 pack multi colored for students 
-        </h5>
-        <ReactStars
-    count={5}
-    value={4} edit={false}
-    size={24}
-    activeColor="#ffd700"
-  />
-  <p className={`description ${grid===12?"d-block":"d-none"}`}>Elevate your students' learning experience with our Kids Headphones Bulk 10 Pack, designed with young learners in mind. These colorful and reliable headphones are the perfect addition to any classroom, library, or educational environment.</p>
-        <p className="price">$100.00</p>
-      </div>
-      <div className="action-bar position-absolute">
-        <div className="d-flex flex-column">
-          <Link>
-          <img src="images/prodcompare.svg" alt="compare" />
-          </Link>
-          <Link>
-          <img src="images/view.svg" alt="addCart"/>
-          </Link>
-          <Link>
-          <img src="images/add-cart.svg" alt="addCart" />
-          </Link>
-        </div>
-      </div>
-    </Link>
-    </div>
-    <div className={`${location.pathname=="/store"?`gr-${grid}`:"col-3"}`}>
-    <Link className="product-card position-relative">
-      <div className="wishlist-icon position-absolute">
-        <Link>
-        <img src="images/wish.svg" alt="wishlist" />
-        </Link>
-      </div>
-      <div className="product-image">
-      <img src="images/watch.jpg" alt="product img" />
-      <img className="img-fluid" src="images/watch-1.jpeg" alt="product img " />
-    </div>
-    <div className="product-details">
-      <h6 className="brand">Havels</h6>
-      <h5 className="product-title">
-        Kids headphones bulk 10 pack multi colored for students
-      </h5>
-      <ReactStars
-  count={5}
-  value={4} edit={false}
-  size={24}
-  activeColor="#ffd700"
-/>
-<p className={`description ${grid===12?"d-block":"d-none"}`}>Enhance your everyday with the Apple Watch Series 2 - 42 mm Stainless Steel Case. Crafted with precision and innovation, this remarkable smartwatch seamlessly combines cutting-edge technology with a timeless design.</p>
-      <p className="price">$100.00</p>
-    </div>
-    <div className="action-bar position-absolute">
-      <div className="d-flex flex-column">
-        <Link>
-        <img src="images/prodcompare.svg" alt="compare" />
-        </Link>
-        <Link>
-        <img src="images/view.svg" alt="addCart"/>
-        </Link>
-        <Link>
-        <img src="images/add-cart.svg" alt="addCart" />
-        </Link>
-      </div>
-    </div>
-  </Link>
-  </div>
-  </>
-  )
-}
+      {data?.map((item, index) => {
+        return (
+          <div
+            key={index}
+            className={`${
+              location.pathname === '/product'
+                ? `gr-${grid} col-md-6 col-sm-5 col-6`
+                : 'col-3'
+            }`}
+          >
+            <div className="product-card position-relative">
+              <div className="wishlist-icon position-absolute">
+                <button
+                  className="border-0 bg-transparent"
+                  onClick={() => addToWish(item?._id)}
+                >
+                  <img src={wish} alt="wishlist" />
+                </button>
+              </div>
 
-export default ProductCard
+              <div
+                className="product-image"
+                onClick={() => navigate('/product/' + item?._id)}
+                style={{ cursor: 'pointer' }}
+              >
+                <img
+                  src={item?.images[0]?.url}
+                  alt="products"
+                  width={220}
+                  height={200}
+                />
+                <img
+                  src={item?.images[1]?.url}
+                  alt="products"
+                  width={220}
+                  height={200}
+                />
+              </div>
+              <div className="product-details">
+                <h6 className="brand">{item?.brand}</h6>
+                <h5 className="product-title">{item?.title}</h5>
+                <ReactStars
+                  value={+item?.totalrating}
+                  edit={false}
+                  count={5}
+                  size={24}
+                  activeColor="#ffd700"
+                />
+                <p
+                  className={`description ${
+                    grid === 12 ? 'd-block' : 'd-none'
+                  }`}
+                  dangerouslySetInnerHTML={{ __html: item.description }}
+                ></p>
+                <p className="price">₹{item.price}</p>
+              </div>
+              <div className="action-bar position-absolute">
+                <div className="d-flex flex-column gap-15">
+                  <button className="border-0 bg-transparent">
+                    <img src={prodcompare} alt="compare" />
+                  </button>
+                  <button className="border-0 bg-transparent">
+                    <img
+                      src={view}
+                      alt="view"
+                      onClick={() => navigate('/product/' + item?._id)}
+                    />
+                  </button>
+                  <Link
+                    to={'/product/' + item?._id}
+                    className="border-0 bg-transparent"
+                  >
+                    <img src={addcart} alt="addcart" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
+};
+
+export default ProductCard;

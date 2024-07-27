@@ -1,16 +1,17 @@
-const mongoose = require('mongoose'); // Erase if already required
+import mongoose from 'mongoose';
 
-// Declare the Schema of the Mongo model
-var brandSchema = new mongoose.Schema({
-    title:{
-        type:String,
-        required:true,
-        unique:true,
-        index:true,
+const { Schema, model } = mongoose;
+
+const brandSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      unique: true,
+      index: true,
     },
-},{
-    timestamps:true,
-});
+  },
+  { timestamps: true }
+);
 
-//Export the model
-module.exports = mongoose.model('Brand', brandSchema);
+export default model('Brand', brandSchema);

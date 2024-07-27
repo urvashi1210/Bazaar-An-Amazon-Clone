@@ -1,6 +1,5 @@
-const jwt=require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
-exports.generateRefreshToken=(id)=>{
-    return jwt.sign({id},process.env.JWT_SECRET,{expiresIn:"3d"});
+export const generateRefreshToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '3d' });
 };
-

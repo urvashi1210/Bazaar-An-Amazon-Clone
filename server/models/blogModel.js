@@ -1,55 +1,64 @@
-const mongoose = require('mongoose'); // Erase if already required
-const User = require('../models/userModel');
- 
- // Declare the Schema of the Mongo model
- var blogSchema = new mongoose.Schema({
-     title:{
-         type:String,
-         required:true,       
-     },
-     description:{
-         type:String,
-         required:true,
-     },
-     category:{
-         type:String,
-         required:true,
-     },
-     numViews:{
-         type:Number,
-         default:0
-     },
-     isLiked:{
-      type:Boolean,
-      default: false
-     },
-     isDisliked:{
-      type:Boolean,
-      default:false
-     },
-     images: [],
-     likes:[{
-      type:mongoose.Schema.Types.ObjectId,
-      ref:"User"
-     }],
-     dislikes:[{
-      type : mongoose.Schema.Types.ObjectId,
-      ref:"User"
-     }],
-     author:{
-      type: String,
-      default: "admin",
-     },
+import mongoose from 'mongoose';
 
- },{
-  toJSON:{
-    virtuals:true,
+const { Schema } = mongoose;
+
+const blogSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    numViews: {
+      type: Number,
+      default: 0,
+    },
+    isLiked: {
+      type: Boolean,
+      default: false,
+    },
+    isDisliked: {
+      type: Boolean,
+      default: false,
+    },
+    likes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
+    disLikes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
+    images: [
+      {
+        url: String,
+      },
+    ],
+    author: {
+      type: String,
+      default: 'Admin',
+    },
   },
-  toObject:{
-    virtuals:true,
-  },
-  timestamps:true,
- });
- 
- //Export the model
- module.exports = mongoose.model('Blog', blogSchema);
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    toObject: {
+      virtuals: true,
+    },
+    timestamps: true,
+  }
+);
+
+export default mongoose.model('Blog', blogSchema);
