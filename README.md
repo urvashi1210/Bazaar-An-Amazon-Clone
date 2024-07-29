@@ -2,12 +2,6 @@
 
 
 
-### Cloning the repository
-
-```shell
-git clone https://github.com/raahulvinod/ecommerce-project.git
-```
-
 ### Install packages
 
 ```shell
